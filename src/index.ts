@@ -229,7 +229,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
 
         // Make the post request
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/messages`,
+            `https://waba-v2.360dialog.io/messages`,
             {
                 method: "POST",
                 headers: {
@@ -423,7 +423,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         messageId: string
     ): Promise<ServerMarkAsReadResponse | Response> {
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/messages`,
+            `https://waba-v2.360dialog.io/messages`,
             {
                 method: "POST",
                 headers: {
@@ -458,7 +458,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         format: "png" | "svg" = "png"
     ): Promise<ServerCreateQRResponse | Response> {
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/message_qrdls?generate_qr_image=${format}&prefilled_message=${message}`,
+            `https://waba-v2.360dialog.io/message_qrdls?generate_qr_image=${format}&prefilled_message=${message}`,
             {
                 method: "POST"
             }
@@ -479,7 +479,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         id?: string
     ): Promise<ServerRetrieveQRResponse | Response> {
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/message_qrdls/${id ?? ""}`
+            `https://waba-v2.360dialog.io/message_qrdls/${id ?? ""}`
         );
 
         return this.getBody<ServerRetrieveQRResponse>(promise);
@@ -499,7 +499,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         message: string
     ): Promise<ServerUpdateQRResponse | Response> {
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/message_qrdls/${id}?prefilled_message=${message}`,
+            `https://waba-v2.360dialog.io/message_qrdls/${id}?prefilled_message=${message}`,
             {
                 method: "POST"
             }
@@ -520,7 +520,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         id: string
     ): Promise<ServerDeleteQRResponse | Response> {
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/message_qrdls/${id}`,
+            `https://waba-v2.360dialog.io/message_qrdls/${id}`,
             {
                 method: "DELETE"
             }
@@ -548,7 +548,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
     ): Promise<ServerMediaRetrieveResponse | Response> {
         const params = phoneID ? `phone_number_id=${phoneID}` : "";
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${id}?${params}`
+            `https://waba-v2.360dialog.io/${id}?${params}`
         );
 
         return this.getBody<ServerMediaRetrieveResponse>(promise);
@@ -683,7 +683,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         }
 
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${phoneID}/media?messaging_product=whatsapp`,
+            `https://waba-v2.360dialog.io/media?messaging_product=whatsapp`,
             {
                 method: "POST",
                 body: form as FormData
@@ -743,7 +743,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
     ): Promise<ServerMediaDeleteResponse | Response> {
         const params = phoneID ? `phone_number_id=${phoneID}` : "";
         const promise = this.$$apiFetch$$(
-            `https://graph.facebook.com/${this.v}/${id}?${params}`,
+            `https://waba-v2.360dialog.io/${id}?${params}`,
             {
                 method: "DELETE"
             }
@@ -991,7 +991,7 @@ export class WhatsAppAPI<EmittersReturnType = void> {
         return this.fetch(url, {
             ...options,
             headers: {
-                Authorization: `Bearer ${this.token}`,
+                'D360-API-KEY': `${this.token}`,
                 ...options.headers
             }
         });
